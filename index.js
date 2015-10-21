@@ -477,7 +477,7 @@ function cleanPlaceHolder(content){
 
 
 module.exports = function (ret, conf, settings, opt) { //打包后处理
-    if (!opt.pack){
+    if (fis.version.split('.')[0] >= 3 && !opt.pack){
         return;
     }
     combineCache = {};
@@ -491,7 +491,7 @@ module.exports = function (ret, conf, settings, opt) { //打包后处理
     if(settings.autoCombine)
         settings.autoReflow = true;
     fis.util.map(ret.src, function (subpath, file) {
-        if (file.isHtmlLike && file.noMapJs !== false) { //类html文件
+        if (file.useCompile && file.isHtmlLike && file.noMapJs !== false) { //类html文件
             placeHolders = {};
             var content = file.getContent();
             var result = analyzeHtml(content, pathMap, !settings.autoReflow);
