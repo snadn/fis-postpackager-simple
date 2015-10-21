@@ -477,7 +477,7 @@ function cleanPlaceHolder(content){
 
 
 module.exports = function (ret, conf, settings, opt) { //打包后处理
-    if (fis.version.split('.')[0] >= 3 && !opt.pack){
+    if (fis.version.split('.')[0] < 3 && !opt.pack){
         return;
     }
     combineCache = {};
